@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  # resources :projects
-
   resources :projects do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create] do
+      collection do
+        get 'view_comments'
+      end
+    end
   end
 end

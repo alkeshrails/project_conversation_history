@@ -3,7 +3,14 @@
     <%= form.label :name, { class: "form-label"} %>
     <%= form.text_field :name, { class: "form-control", placeholder: "Project Name" } %>
   </div>
+
   <div class="col-sm-4">
-    <%= form.submit "Create", class: "btn btn-primary GetWeatherBTN" %>
+    <%= form.label :status, { class: "form-label"} %>
+    <%= form.select :status, options_for_select(Project.statuses.map { |key, value| 
+    [key.capitalize, key]}, @project.status) %>
+  </div>
+
+  <div class="col-sm-4">
+    <%= form.submit "Create", class: "btn btn-primary" %>
   </div>
 <% end %>
