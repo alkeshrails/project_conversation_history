@@ -1,31 +1,30 @@
 <% if @comments.present? %>
-  <h1>Comments</h1>
-
-  <section class="float-left w-100 mt-5">
+  <section class="block m-auto w-100 max-w-[1200px] mt-5">
     <div class="container">
       <div class="row">
-        <h1 class="text-primary w-100 page-title mb-4">Projects</h1>
-        <div class="card m-12">
+        <h1 class="font-extrabold text-center mt-10 mb-4 text-[30px]">Comments</h1>
+        <div class="card m-12 ml-0 mr-0">
           <div class="card-body">
             <div class="row">
-                <p>
-                  <table class="table mt-3 table-bordered Air-Pollution">
-                    <thead>
+              <p>
+                <table class="table-fixed Air-Pollution w-[1200px] m-auto ">
+                  <thead class="bg-gray-100">
+                    <tr>
+                      <th class="px-4 py-2 text-left" scope="col">Email</th>
+                      <th class="px-4 py-2 text-left" scope="col">Comment</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @comments.each do |comment| %>
                       <tr>
-                        <th scope="col">Email</th>
-                        <th scope="col">Comment</th>
+                        <td class="border px-4 py-2"><%= comment.user.email %></td>
+                        <td class="border px-4 py-2"><%= comment.body %></td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      <% @comments.each do |comment| %>
-                        <tr>
-                          <td> <%= comment.user.email %></td>
-                          <td> <%= comment.body %></td>
-                        </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                </p>
+                    <% end %>
+                  </tbody>
+                </table>
+              </p>
             </div>
           </div>
         </div>
@@ -33,5 +32,5 @@
     </div>
   </section>
 <% else %>
-  <h1>No comments available.</h1>
+  <h1 class="text-center text-lg mt-10">No comments available.</h1>
 <% end %>

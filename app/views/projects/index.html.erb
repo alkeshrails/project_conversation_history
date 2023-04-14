@@ -1,31 +1,33 @@
-<%= link_to 'Add New Project', new_project_path, method: :get, class: 'nav-link' %>   
+<h1 class="font-extrabold text-center mt-10 mb-0 text-[30px]">My Projects</h1>
 
-<h1>My Projects</h1>
-
-<section class="float-left w-100 mt-5">
+<section class="block m-auto w-100">
   <div class="container">
     <div class="row">
-      <h1 class="text-primary w-100 page-title mb-4">Projects</h1>
       <div class="card m-12">
         <div class="card-body">
           <div class="row">
               <p>
-                <table class="table mt-3 table-bordered Air-Pollution">
-                  <thead>
+                <table class="table-fixed Air-Pollution w-[1200px] m-auto ">
+                  <thead class="bg-gray-100">
                     <tr>
-                      <th scope="col"> Name</th>
-                      <th scope="col"> Status</th>
+                      <th class="px-4 py-2 text-left" scope="col">Name</th>
+                      <th class="px-4 py-2 text-left" scope="col">Status</th>
+                      <th class="px-4 py-2"></th>
+                      <th class="px-4 py-2"></th>
+                      <th class="px-4 py-2"></th>
+                      <th class="px-4 py-2"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <% @projects.each do |project| %>
                       <tr>
-                        <td> <%= project.name %></td>
-                        <td> <%= project.status %></td>
-                        <td> <%= link_to 'View Project', project_path(project.id), method: :get %></td>
-                        <td> <%= link_to 'Edit Project', edit_project_path(project.id), method: :get %></td>
-                        <td> <%= link_to 'Show comments', view_comments_project_comments_path(project.id), method: :get %></td>
-                        <td><%= button_to 'Delete', project_path(project), method: :delete, class: 'btn-primary delete-btn' %>
+                        <td class="border px-4 py-2"><%= project.name %></td>
+                        <td class="border px-4 py-2"><%= project.status %></td>
+                        <td class="border px-4 py-2"><%= link_to 'View Project', project_path(project.id), method: :get, class: 'text-teal-500' %></td>
+                        <td class="border px-4 py-2"><%= link_to 'Edit Project', edit_project_path(project.id), method: :get, class: 'text-teal-500' %></td>
+                        <td class="border px-4 py-2"><%= link_to 'Show comments', view_comments_project_comments_path(project.id), method: :get, class: 'text-teal-500' %></td>
+                        <td class="border px-4 py-2">
+                          <%= button_to 'Delete', project_path(project), method: :delete, class: 'btn-primary delete-btn text-teal-500' %>
                         </td>
                       </tr>
                     <% end %>

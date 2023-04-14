@@ -1,40 +1,33 @@
-<nav class="weather-nav navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand text-primary" href="/">Project Conversation</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav m-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Add project', new_project_path, method: :get, class: 'nav-link' %>   
-        </li>
-        <li class="nav-item">
-          <%= link_to 'View projects', projects_path, method: :get, class: 'nav-link' %>   
-        </li>
+ <nav class="flex items-center justify-between flex-wrap shadow-sm p-6">
+  <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <span class="font-semibold text-xl tracking-tight text-black font-bold text-[20px]">Project Conversation</span>
+  </div>
+  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="text-sm lg:flex-grow ml-10">
+      <a href="/" class="block mt-4 lg:inline-block lg:mt-0  hover:text-teal-500 mr-10 font-semibold text-lg">
+        Home
+      </a>
+        <%= link_to 'Add project', new_project_path, method: :get, class: 'block mt-4 lg:inline-block lg:mt-0 hover:text-teal-500 mr-10  font-semibold text-lg' %>  
+        <%= link_to 'View projects', projects_path, method: :get, class: 'block mt-4 lg:inline-block lg:mt-0 hover:text-teal-500  font-semibold text-lg' %> 
+    </div>
+    <div>
+      <ul class="navbar-nav flex items-center">
+        <% if user_signed_in? %>
+          <li class="nav-item nav-link  font-semibold text-lg">
+          <%=" #{current_user.email}"%>
+          </li>
+          <li class="nav-item ml-5">
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'inline-block text-sm px-4 py-2 leading-none border rounded text-white bg-teal-500 border-teal-500 hover:border-teal-500 hover:text-white hover:bg-teal-700 mt-4 lg:mt-0 signoutBTN' %> 
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Log In', new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item ">
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link  btn-primary' %>
+          </li>
+        <% end %>
       </ul>
-      <span class="navbar-text justify-centent-end">
-        <ul class="navbar-nav">
-          <% if user_signed_in? %>
-            <li class="nav-item nav-link ">
-            <%=" #{current_user.email}"%>
-            </li>
-            <li class="nav-item">
-            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link signoutBTN  btn-primary' %> 
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to 'Log In', new_user_session_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item ">
-              <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link  btn-primary' %>
-            </li>
-          <% end %>
-        </ul>
-      </span>
     </div>
   </div>
 </nav>

@@ -1,32 +1,57 @@
-<h1><%= @project.name %></h1>
+<div class="w-full max-w-[1200px] m-auto mt-10">
+  <h1 class="text-xl mb-3">
+    <Strong>Project Name:</Strong>  
+    <span class="text-[16px]"><%= @project.name %></span>
+  </h1>
 
-<p>Status: <%= @project.status %></p>
+  <p class="text-xl mb-3"><Strong>Status: </Strong>
+    <span class="text-[16px]">
+      <%= @project.status %>
+    </span>
+  </p>
 
-<% if @project.status_changes.present? %>
-  <h2>Status Changes</h2>
-  <% @project.status_changes.each do |status_change| %>
-    <p>
-      <%= status_change.description %>
-    </p>
+  <% if @project.status_changes.present? %>
+    <h2 class="text-xl mb-3"><Strong>Project Status Changes</Strong></h2>
+    <% @project.status_changes.each do |status_change| %>
+      <p  class="text-[16px]">
+        <%= status_change.description %>
+      </p>
+    <% end %>
   <% end %>
-<% end %>
 
-<h2>Add Comment</h2>
-<%= form_with(model: [@project, @comment], url: project_comments_path(@project), local: true) do |form| %>
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, rows: 4 %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-  </div>
+  <h2  class="text-xl mb-3 font-bold mt-3">Add Comment</h2>
+  <%= form_with(model: [@project, @comment], url: project_comments_path(@project), local: true) do |form| %>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        <%= form.label :body %>
+      </label>
+      <%= form.text_area :body, rows: 4, class: "form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3" %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit 'Add Comment' %>
-  </div>
-<% end %>
-
-<% if @comments.present? %>
-  <h2>Comments</h2>
-  <% @comments.each do |comment| %>
-    <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
+    <div class="actions">
+      <%= form.submit 'Add Comment', class: "bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
   <% end %>
-<% end %>
+
+  <% if @comments.present? %>
+    <h2 class="text-xl mb-3 mt-5 font-bold">Comments</h2>
+
+    <table class="table-fixed Air-Pollution w-[1200px] m-auto ">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left" scope="col">Email</th>
+          <th class="px-4 py-2 text-left" scope="col">Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td class="border px-4 py-2"><%= comment.user.email %></td>
+            <td class="border px-4 py-2"><%= comment.body %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
