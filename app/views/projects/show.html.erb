@@ -2,6 +2,15 @@
 
 <p>Status: <%= @project.status %></p>
 
+<% if @project.status_changes.present? %>
+  <h2>Status Changes</h2>
+  <% @project.status_changes.each do |status_change| %>
+    <p>
+      <%= status_change.description %>
+    </p>
+  <% end %>
+<% end %>
+
 <h2>Add Comment</h2>
 <%= form_with(model: [@project, @comment], url: project_comments_path(@project), local: true) do |form| %>
   <div class="field">

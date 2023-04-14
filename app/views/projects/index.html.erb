@@ -23,6 +23,7 @@
                         <td> <%= project.name %></td>
                         <td> <%= project.status %></td>
                         <td> <%= link_to 'View Project', project_path(project.id), method: :get %></td>
+                        <td> <%= link_to 'Edit Project', edit_project_path(project.id), method: :get %></td>
                         <td> <%= link_to 'Show comments', view_comments_project_comments_path(project.id), method: :get %></td>
                         <td><%= button_to 'Delete', project_path(project), method: :delete, class: 'btn-primary delete-btn' %>
                         </td>
