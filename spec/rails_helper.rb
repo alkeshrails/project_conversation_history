@@ -78,6 +78,7 @@ RSpec.configure do |config|
 
   # For devise based rspecs
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Warden::Test::Helpers
 end
 
 Shoulda::Matchers.configure do |config|
