@@ -18,7 +18,7 @@
     </div>
     <div class="flex items-center justify-end">
       <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-        <%= form.submit "Create", class: "btn btn-primary" %>
+        <%= form.submit "#{@project.id ? 'Update' : 'Create'}", class: "btn btn-primary" %>
       </button>
 
       <%= link_to 'Back', projects_path, class: 'bg-gray-300 pt-2 pb-2 p-5 rounded-md text-black ml-3' %>
